@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  techspacelabs-website:
+    build: .
+    image: techspacelabs-website:latest
+    container_name: techspacelabs-frontend
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.techspacelabs.rule=Host(`techspacelabs.cloud`)"
+      - "traefik.http.routers.techspacelabs.entrypoints=websecure"
+      - "traefik.http.routers.techspacelabs.tls.certresolver=letsencrypt"
